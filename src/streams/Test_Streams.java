@@ -24,9 +24,14 @@ public class Test_Streams {
 
         try {
 
+
              analysis_financial_data_using_loops();
 
              analysis_financial_data_using_streams();
+
+
+
+             //Methods_TXT.increase_dimension("", "dataset");
 
         } catch (Exception e) {
             e.printStackTrace();
