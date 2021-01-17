@@ -14,8 +14,8 @@ public class Test_Generics {
 
     public static void main(String args[]){
 
-        //test_generic_method();
-        test_wildcards();
+        test_generic_method();
+        //test_wildcards();
 
     }//end of method main
 
@@ -59,11 +59,14 @@ public class Test_Generics {
 
         System.out.println("Execute test_generic_method");
 
-        Integer[] intArray = {1, 2, 3, 4, 5};
-        List<String> stringList
-                = Generics.fromArrayToList(intArray, Object::toString);
+        List<String> list_of_string = null;
 
-        System.out.println("StringList: "+stringList);
+        Integer[] intArray = {1, 2, 3, 4, 5};
+        list_of_string = Generics.fromArrayToList(intArray, Object::toString);
+        System.out.println("StringList: "+list_of_string);
+
+        list_of_string = Generics.fromArrayToList(intArray, e -> e.toString());
+        System.out.println("StringList: "+list_of_string);
 
     }//end of method test_generic_method
 

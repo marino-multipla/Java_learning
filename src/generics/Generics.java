@@ -16,23 +16,29 @@ import java.util.stream.Stream;
 public class Generics {
 
     public <T> List<T> fromArrayToList(T[] a) {
+
         return Arrays.stream(a).collect(Collectors.toList());
     }
 
     public <T> void method_1(T element){
-
+        System.out.println(element.toString());
     }
 
-    public static <K, G> List<G> fromArrayToList(K[] a, Function<K, G> mapperFunction) {
+    /**
+     *
+     * T stands for Type
+     * R stands for Result
+     */
+    public static <T, R> List<R> fromArrayToList(T[] a, Function<T, R> mapperFunction) {
         /*
         return Arrays.stream(a)
                 .map(mapperFunction)
                 .collect(Collectors.toList());
          */
 
-        Stream<K> stream_K = Arrays.stream(a);
-        Stream<G> stream_G = stream_K.map(mapperFunction);
-        List<G> list_to_return = stream_G.collect(Collectors.toList());
+        Stream<T> stream_T = Arrays.stream(a);
+        Stream<R> stream_R = stream_T.map(mapperFunction);
+        List<R> list_to_return = stream_R.collect(Collectors.toList());
 
         return  list_to_return;
 

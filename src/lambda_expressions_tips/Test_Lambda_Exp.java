@@ -1,5 +1,6 @@
 package lambda_expressions_tips;
 
+import comparator.Car;
 import generics.Animal;
 
 import java.util.function.Function;
@@ -15,7 +16,9 @@ public class Test_Lambda_Exp {
 
     public static void main(String args[]){
 
-        test_lambda_expressions_tips();
+        test_interfaces();
+
+        //test_scope();
 
     }//end of method main
 
@@ -24,22 +27,32 @@ public class Test_Lambda_Exp {
      */
     private static void test_interfaces(){
 
+        String result = null;
+
         //TEST_1
         //Here the Interface Foo is instantiated and defined using a lambda function;
-        /*
-        Foo foo = (parameter1, parameter2) -> (parameter1 + parameter2) + " from lambda marinoooo";
-        String result = add("Message1 ", "Message2", foo);
+        Foo_2 foo = (parameter1, parameter2) -> (parameter1 +" "+ parameter2) + " from lambda marinoooo";
+        //result = add("Message1 ", "Message2", foo);
+        result = foo.method("Message_1", "Message_2");
         System.out.println(result);
-        */
         //END TEST_1
 
         //TEST_2
         //Here a functional interface Function<String, String> is instantiated and defined using a lambda function;
+        //Function<T,R> is an interface where T is the type and R is the result
         Function<String, String> fn =
                 parameter -> parameter + " from lambda";
-        String result = add("Message", fn);
+        result = add("Message", fn);
         System.out.println(result);
         //END TEST_2
+
+        //TEST_3
+        //Here the Interface Foo is instantiated and defined using a lambda function;
+        //Function<T,R> is an interface where T is the type and R is the result
+        Foo_3 foo_3 = (p1, p2) -> String.valueOf((p1+p2));
+        result = foo_3.method(1,2);
+        System.out.println(result);
+        //END TEST_3
 
     }//end of method test_interfaces(...)
 
@@ -48,7 +61,15 @@ public class Test_Lambda_Exp {
      */
     @FunctionalInterface
     public interface Foo_2 {
-        String method(String parameter1, String parameter2);
+        public String method(String parameter1, String parameter2);
+    }
+
+    /*
+     * Conceptually, a functional interface has exactly one abstract method.
+     */
+    @FunctionalInterface
+    public interface Foo_3 {
+        public String method(int parameter1, int parameter2);
     }
 
     /*
@@ -56,7 +77,7 @@ public class Test_Lambda_Exp {
      */
     @FunctionalInterface
     public interface Foo_1 {
-        String method(String parameter1);
+        public String method(String parameter1);
     }
 
     public static String add(String parameter1, String parameter2, Foo_2 foo) {

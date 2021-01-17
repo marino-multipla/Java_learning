@@ -24,14 +24,14 @@ public class Test_Streams {
 
         try {
 
-
+            /*
              analysis_financial_data_using_loops();
 
              analysis_financial_data_using_streams();
 
+             */
 
-
-             //Methods_TXT.increase_dimension("", "dataset");
+            test_stream_reduction_reduce_method();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -130,13 +130,13 @@ public class Test_Streams {
          */
 
         //TEST_1
-
+        /*
         List<String> list = Arrays.asList("abc1", "abc2", "abc3");
         list.stream().filter(element -> {
             System.out.println("filter is executed for "+element.toString());
             return element.contains("2");
         });
-
+        */
         //END TEST_1
         /*
          * Here the filter function is NEVER executed so nothing will be printed;
@@ -147,7 +147,7 @@ public class Test_Streams {
 
         //TEST_2
         /*
-        List<String> list = Arrays.asList("abc2", "abc7", "abc3", "abc2", "abc2");
+        List<String> list = Arrays.asList("abc4", "abc2", "abc3", "abc2", "abc2");
         Optional<String> stream = list.stream().filter(element -> {
             System.out.println("filter is executed for "+element.toString());
             return element.contains("2");
@@ -230,7 +230,7 @@ public class Test_Streams {
             return false;
         }).collect(Collectors.toList());
         System.out.println("stream result "+result_list.toString());
-        */
+           */
         //END_TEST_6
         /*
          * Here the filter function is always executed;
@@ -283,6 +283,7 @@ public class Test_Streams {
 
          */
 
+        /*
         OptionalInt reduced =
                 IntStream.range(1, 4).reduce((a, b) -> a + b);
         System.out.println("reduced "+reduced);
@@ -291,6 +292,9 @@ public class Test_Streams {
                 IntStream.range(1, 4).reduce(10, (a, b) -> a + b);
         System.out.println("reducedTwoParams "+reducedTwoParams);
 
+
+         */
+        /*
         int reducedParams = Stream.of(1, 2, 3)
                 .reduce(10, (a, b) -> a + b, (a, b) -> {
                    System.out.println("combiner is called");
@@ -298,12 +302,31 @@ public class Test_Streams {
                 });
         System.out.println("reducedParams "+reducedParams);
 
+         */
+
+        /*
         int reducedParallel = Arrays.asList(1, 2, 3).parallelStream()
                 .reduce(10, (a, b) -> a + b, (a, b) -> {
                     System.out.println("combiner is called");
                     return a + b;
                 });
-        System.out.println("reducedParallel "+reducedParallel);
+                System.out.println("reducedParallel "+reducedParallel);
+         */
+
+        /*
+         * Reduce function
+         * T1 -> 10 + 1 = 11
+         * T2 -> 10 + 2 = 12
+         * T3 -> 10 + 3 = 13
+         *
+         * Combiner function
+         * 11 + 12 = 23
+         * 23 + 13 = 36
+         */
+
+
+
+
 
     }//end of method test_stream_reduction_reduce_method(...)
 
